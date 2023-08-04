@@ -1,0 +1,51 @@
+.home-info {
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.home-info h2 {
+    font-family: Brothers;
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.event-grid {
+    margin-bottom: 2rem;
+}
+
+.event-grid__header {
+    display: flex;
+    color: var(--secondary-color);
+    justify-content: center;
+    align-items: center;
+    min-height: 5rem;
+    font-family: Brothers;
+    font-size: 1.75rem;
+    background-color: var(--soft-pink);
+}
+
+.event-grid__header:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.event-grid__img:hover {
+    filter: contrast(0.8);
+}
+
+/* 
+.event-grid__footer {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    background-color: var(--soft-pink);
+}
+
+.event-grid__footer a {
+    text-decoration: underline;
+} */

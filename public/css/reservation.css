@@ -1,0 +1,52 @@
+h1, h3 {
+    font-family: Brothers;
+    text-transform: uppercase;
+}
+
+form, .film-description {
+    font-size: 1rem;
+}
+
+.color-primary {
+    color: var(--primary-color);
+    font-style: italic;
+}
+
+.reservation-detail {
+    padding: 2rem;
+    gap: 1rem;
+    background-color: var(--soft-pink);
+}
+
+form {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+label {
+    font-weight: bold;
+}
+
+#client-name {
+    padding: .5rem;
+    width: 100%;
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: .4rem 1rem;
+}
+
+.submit-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+p {
+    margin-top: 1rem;
+}

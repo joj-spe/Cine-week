@@ -1,0 +1,63 @@
+h1, h2 {
+    font-family: Brothers;
+    text-transform: uppercase;
+}
+
+h4 {
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.event-detail {
+    background-color: var(--soft-pink);
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.film-img {
+    margin: 1.5rem 0 2rem;
+}
+
+.film-name {
+    font-family: Brothers;
+    font-size: 4rem;
+}
+
+.film-description {
+    font-size: 1rem;
+}
+
+.prog-list {
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+.prog {
+    margin: 1rem 0;
+}
+
+.prog-time-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.prog-time {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 2px solid var(--primary-color);
+    padding: .5rem;
+}
+
+.prog-time:hover {
+    border-color: var(--secondary-color);
+}
+
+.prog-time:hover div {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
