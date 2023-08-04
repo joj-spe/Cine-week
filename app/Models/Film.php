@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Film extends Model
 {
@@ -14,4 +15,8 @@ class Film extends Model
         'description',
         'image_url'
     ];
+
+    public function projections() : HasMany {
+        return $this->hasMany(Projection::class);
+    }
 }

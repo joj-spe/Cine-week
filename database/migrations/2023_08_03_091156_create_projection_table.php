@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('projection', function (Blueprint $table) {
             $table->id();
-            $table->date("date");
+            $table->float('price');
+            $table->date('date');
+            $table->time('time');
             $table->foreignId('hall_id');
             $table->foreignId('film_id');
             $table->timestamps();
