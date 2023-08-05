@@ -28,6 +28,7 @@
     font-family: Brothers;
     font-size: 1.75rem;
     background-color: var(--soft-pink);
+    text-align: center;
 }
 
 .event-grid__header:hover {
