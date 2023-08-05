@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NavController;
+use App\Http\Controllers\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'home');
 
-Route::view('/home', 'home');
-Route::view('/event', 'event');
-Route::view('/reservation', 'reservation');
-Route::view('/status', 'status');
+Route::get('home', [NavController::class, 'home'])->name('home');
+Route::view('/about', 'about')->name('about');
+
+Route::get('/event/{film}', [MainController::class, 'eventDetails'])->name('event');
+Route::get('/event/{film}/projection/{projection}', [MainController::class, 'eventReservation'])->name('reservation');
+Route::post('/event/{film}/projection/{projection}', [MainController::class, 'reservationSubmit'])->name('reservation-submit');

@@ -1,4 +1,6 @@
-@extends('layout.master') @section('style')
+@extends('layout.master') 
+
+@section('style')
 <style>
     h1 {
         font-family: Brothers;
@@ -38,14 +40,13 @@
         <h1>Validée !</h1>
         <p>
             Vous avez réservé une place dans la 
-            <span>salle 3</span>
+            <span>salle {{ $hall_numero }}</span>
             pour le film
-            <span>silicon</span>,
+            <span>{{ $film['name'] }}</span>,
             le
-            <span>Vendredi, 04 août 2023 à 11:20</span>
+            <span>{{ $projection['date'].' à '.$projection['time'] }}</span>
             au nom de 
-            <span>Nom et prenom</span>
-
+            <span>{{ $reservation['client_name'] }}</span>
         </p>
     </div>
 </main>

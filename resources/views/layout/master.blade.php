@@ -14,8 +14,8 @@
         <header>
             <div class="logo">CINE</div>
             <nav>
-                <a href="#">Accueil</a>
-                <a href="#">A propos</a>
+                <a href="{{ route('home') }}">Accueil</a>
+                <a href="{{ route('about') }}">À propos</a>
             </nav>
         </header>
         @yield('content')
