@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Utils\DateTranslation;
 use Illuminate\Support\Carbon;
 
 class NavController extends Controller
@@ -19,8 +20,8 @@ class NavController extends Controller
             });
 
         $week_dates = [
-            'start' => Carbon::now()->startOfWeek()->formatLocalized('%A, %e, %B'),
-            'end' => Carbon::now()->endOfWeek()->formatLocalized('%A, %e, %B'),
+            'start' => DateTranslation::toFrench(Carbon::now()->startOfWeek()->formatLocalized('%A, %e, %B')),
+            'end' => DateTranslation::toFrench(Carbon::now()->endOfWeek()->formatLocalized('%A, %e, %B')),
         ];
 
         return View('home')->with(compact('films', 'week_dates'));

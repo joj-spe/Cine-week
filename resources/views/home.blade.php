@@ -16,7 +16,7 @@
                     <a href="{{ route('event', $film['id']) }}" class="event-grid__header">
                         {{ $film['name'] }}
                     </a>
-                    <a href="#">
+                    <a href="{{ route('event', $film['id']) }}">
                         <img class="event-grid__img"
                             src="{{ asset($film['image_url']) }}"
                             alt="{{ $film['name'] }}">
