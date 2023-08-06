@@ -28,7 +28,7 @@
                                 @foreach ($projections as $projection)
                                     <a href="{{ route('reservation', ['film' => $film['id'], 'projection' => $projection['id']]) }}" class="prog-time">
                                         <div>{{ $projection['time'] }}</div>
-                                        <small>{{ $projection['available'] }} places disponibles</small>
+                                        <small>{{ $projection['nb_reservations'].' sur '.$projection['nb_places'] }} places prises</small>
                                     </a>    
                                 @endforeach
                             </div>

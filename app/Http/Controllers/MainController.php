@@ -13,13 +13,12 @@ class MainController extends Controller
 {
     public function eventDetails(Request $request, Film $film) {
         $projections_groups = $film->projections->map(function ($item) {
-            $nb_reservation = $item->reservations->count();
-            $nb_place = Hall::find($item->hall_id)->nb_place;
+            $item['nb_reservations'] = $item->reservations->count();
+            $item['nb_places'] = Hall::find($item->hall_id)->nb_place;
 
             // Normalize: Voir la fonction créé à la fin du fichier
-            $item['date'] = $this->toReadableDate($item['date']);
+            $item['date'] = $this->tdf($this->toReadableDate($item['date']));
             $item['time'] = $this->toReadableTime($item['time']);
-            $item['available'] = $nb_place - $nb_reservation;
 
             return $item;
         })
@@ -30,7 +29,7 @@ class MainController extends Controller
     } 
 
     public function eventReservation(Film $film, Projection $projection) {
-        $projection['date'] = $this->toReadableDate($projection['date']);
+        $projection['date'] = $this->tdf($this->toReadableDate($projection['date']));
         $projection['time'] = $this->toReadableTime($projection['time']);
         
         return View('reservation')->with(compact('film', 'projection'));
@@ -49,7 +48,7 @@ class MainController extends Controller
         
         $hall_numero = Hall::find($projection->hall_id)->numero;
         
-        $projection['date'] = $this->toReadableDate($projection['date']);
+        $projection['date'] = $this->tdf($this->toReadableDate($projection['date']));
         $projection['time'] = $this->toReadableTime($projection['time']);
 
         return View('status')->with(compact('film', 'projection', 'reservation', 'hall_numero'));
@@ -57,6 +56,26 @@ class MainController extends Controller
 
 
     // Fonction utilitaires
+
+    private function tdf(string $dateEnAnglais) : string
+    {
+        $joursAnglais = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        $joursFrancais = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+
+        $moisAnglais = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        $moisFrancais = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
+        $dateEnFrancais = preg_replace_callback('/\b(' . implode('|', $joursAnglais) . ')\b/i', function($match) use ($joursFrancais, $joursAnglais) {
+            return ucfirst(strtolower($joursFrancais[array_search(strtolower($match[1]), array_map('strtolower', $joursAnglais))])); 
+        }, $dateEnAnglais);
+
+        $dateEnFrancais = preg_replace_callback('/\b(' . implode('|', $moisAnglais) . ')\b/i', function($match) use ($moisFrancais, $moisAnglais) {
+            return ucfirst(strtolower($moisFrancais[array_search(strtolower($match[1]), array_map('strtolower', $moisAnglais))])); 
+        }, $dateEnFrancais);
+
+        return $dateEnFrancais;
+}
+
 
     private function toReadableDate(string $date) {
         return Carbon::createFromFormat('Y-m-d', $date)->formatLocalized('%A, %d %B %Y');
